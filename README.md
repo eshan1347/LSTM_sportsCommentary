@@ -30,31 +30,36 @@ graph TD;
   Probs-->Output;
 ```
 Various techniques like Gradient Scaling, Gradient Checkpointing, Gradient Clipping , Half-Precision Float etc have been tried and implemented inorder to increase the efficiency.
-Text has been embedded on a word level here rather than on a character level because the model was going to use minimal amount of data and training loops.The model will perform significantly better if trained 
-on characters and more learning. Pre-trained word embeddding like Word2vec from gensim has been tried but the embedding layers from torch.nn with learnable parameters perform better. Use of Linear layers has been
-minimised inorder to simplify the model but the additional parameters will help in learning.
+Text has been embedded on a word level here rather than on a character level because the model was going to use minimal amount of data and training loops.The model will perform significantly better if 
+trained on characters and more learning. Pre-trained word embeddding like Word2vec from gensim has been tried but the embedding layers from torch.nn with learnable parameters perform better. Use of 
+Linear layers has been minimised inorder to simplify the model but the additional parameters will help in learning.
 
 ## Setup
 To run the project: 
+
 1.Install Python dependencies:
 `pip install torch pandas numpy scikit-learn pathlib`
+
 2.Clone the repository:
 `git clone https://github.com/eshan1347/LSTM_sportsCommentary`
+
 3.Download the dataset:
+
 4.Train the model:
 `python seq2seqTrain.py -bs batch_size -lr learning_rate -e epochs -ev evaluation_epochs`
+
 5.Run the model
 `python app.py`
 
 ## Preprocessing 
-The dataset used is huge with dimensions: (941009, 22). Only 20000 entries and 9 features were utilised for the model. This was done based on whether the features were relevent and missing values. The features
-selected have no null values. The numerical values were converted into strings based on their class names and what they denoted. Then they were mapped to integers through a dictionary. A combined vocabulary is
-created using all the unique words present in X and Y and then data is encoded and converted into tensors
+The dataset used is huge with dimensions: (941009, 22). Only 20000 entries and 9 features were utilised for the model. This was done based on whether the features were relevent and missing values. The 
+features selected have no null values. The numerical values were converted into strings based on their class names and what they denoted. Then they were mapped to integers through a dictionary. A combined
+vocabulary is created using all the unique words present in X and Y and then data is encoded and converted into tensors
 
 ## Training
-A typical PyTorch training loop is ran with AdamW optimizer and a Cross-Entropy Loss function . Various other optmizers and loss functions have been tried and tested including uncomman ones like Hessian-Free etc
-,But these are best suited. Inorder to view the various different approaches (Atleast a dozen !) taken inorder to maximize the learning, take a look at the LSTM_sportsComm.ipynb notebook provided.
-This notebook serves as a reminder of the various time, effort and strategies utilized while working on this project.
+A typical PyTorch training loop is ran with AdamW optimizer and a Cross-Entropy Loss function . Various other optmizers and loss functions have been tried and tested including uncomman ones like Hessian-Free
+etc,But these are best suited. Inorder to view the various different approaches (Atleast a dozen !) taken inorder to maximize the learning, take a look at the LSTM_sportsComm.ipynb notebook provided.This 
+notebook serves as a reminder of the various time, effort and strategies utilized while working on this project.
 
 ## Results
 The model runs as expected and I achieved these loss values:
