@@ -204,10 +204,10 @@ for i in dec(res[0].tolist()):
   str += i + ' '
 
 while True:
-  n = input("Number of words: \n")
+  n = int(input("Number of words: \n"))
   prompt = input("Prompt['time', 'event_type', 'side', 'event_team', 'opponent', 'player','is_goal', 'assist_method', 'fast_break']:\n")
-  context = torch.tensor(enc(prompt), dtype=torch.long, device=device)
-  res = lmodel.genTokens(n,context)
+  context = torch.tensor(enc(prompt), dtype=torch.long, device=device).unsqueeze(dim=0)
+  res = model.genTokens(n,context)
   str = ''
   for i in dec(res[0].tolist()):
     str += i + ' '
